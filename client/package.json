@@ -52,7 +52,9 @@
     "test": "node scripts/test.js --env=jsdom"
   },
   "devDependencies": {
-    "react-hot-loader": "^4.3.6"
+    "node-sass": "^4.9.3",
+    "react-hot-loader": "^4.3.6",
+    "sass-loader": "^7.1.0"
   },
   "jest": {
     "collectCoverageFrom": [
