@@ -149,6 +149,7 @@ module.exports = {
               // It enables caching results in ./node_modules/.cache/babel-loader/
               // directory for faster rebuilds.
               cacheDirectory: true,
+              plugins: ['react-hot-loader/babel'],
             },
           },
           // Find SASS files, compile them to CSS, then manage them as normal CSS file in CRA.
