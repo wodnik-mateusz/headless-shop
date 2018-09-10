@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Middle.sass';
 import { MdEmail, MdPhone, MdMap } from 'react-icons/md';
 
-const Middle = () => (
+const Middle = ({toggleMap}) => (
     <section className={styles.middle}>
         <div className={styles.card}>
             <header className={styles.header}>
@@ -23,7 +23,7 @@ const Middle = () => (
                 <div className={styles.icon}><MdMap /></div>
                 <h5 className={styles.title}>Find Us</h5>
             </header>
-            <button className={styles.action}>Show map</button>
+            <button className={styles.action} onClick={toggleMap}>Show map</button>
         </div>
     </section>
 );
