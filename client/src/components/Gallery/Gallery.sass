@@ -1,0 +1,39 @@
+.gallery
+    display: grid
+    --columns: 6
+    --rows: 10
+    grid-template-columns: repeat(var(--columns), 1fr)
+    grid-template-rows: repeat(var(--rows), calc(100vw / var(--columns)))
+    grid-gap: 10px
+.image
+    background-size: cover
+    background-position: top center
+
+// Mixin that returns for each image index two css variables values for grid-column and grid-row property
+=image($idx, $col, $row)
+    --image-#{$idx}-col: auto / span #{$col}
+    --image-#{$idx}-row: auto / span #{$row}
+
+// Images position variables
+.gallery
+    +image(0,2,2)
+    +image(1,4,2)
+    +image(2,3,2)
+    +image(3,3,3)
+    +image(4,3,3)
+    +image(5,3,2)
+    +image(6,6,3)
+
+// Create image classes using provided css variables
+@for $i from 0 through 7
+    .image-#{$i}
+        grid-column: var(--image-#{$i}-col)
+        grid-row: var(--image-#{$i}-row)
+
+@media (min-width: 768px)
+    .gallery
+        --rows: 7
+        +image(2,1,1)
+        +image(3,2,1)
+        +image(5,3,4)
+        +image(6,3,2)

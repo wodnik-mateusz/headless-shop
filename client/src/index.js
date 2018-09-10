@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.sass';
 import './reset.css';
+import './index.sass';
 import App from './components/App/App';
 import Store from './Store'
 import { BrowserRouter } from 'react-router-dom'

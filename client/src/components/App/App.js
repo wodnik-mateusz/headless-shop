@@ -5,6 +5,7 @@ import {StoreConsumer} from '../../Store';
 import { Route, Switch } from 'react-router-dom';
 
 import TopNav from '../TopNav/TopNav';
+import Main from '../Main/Main';
 
 class App extends Component {
   render() {
@@ -12,6 +13,9 @@ class App extends Component {
     return (
       <div className={styles.App}>
         <TopNav data={topNav}/>
+        <Switch>
+          <Route exact path={"/"} component={Main} />
+        </Switch>
       </div>
     );
   }
