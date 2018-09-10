@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Footer.sass';
 import Top from './elements/Top/Top';
 import Middle from './elements/Middle/Middle';
+import Copyrights from './elements/Copyrights/Copyrights';
 
 const Footer = () => (
     <footer>
@@ -16,9 +17,7 @@ const Footer = () => (
                 <area shape="circle" coords="124,58,8" href="venus.htm" alt="Venus" />
             </map> */}
         </section>
-        <section className={styles.rights}>
-        
-        </section>
+        <Copyrights />
     </footer>
 );
 
