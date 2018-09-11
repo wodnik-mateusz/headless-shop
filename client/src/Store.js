@@ -1,4 +1,5 @@
 import React, { Component, createContext } from 'react';
+import {wpAPI, wcAPI, rootURL, wooCommerceCredentials, encoder} from './config'
 
 const StoreContext = createContext('StoreContext')
 export const StoreProvider = StoreContext.Provider
@@ -8,30 +9,43 @@ class Store extends Component {
     state = {
         topNav: [],
         gallery: [],
+        products: [],
+        categories: [],
     }
     componentDidMount() {
         // Fetch top navigation
-        fetch("https://localhost/wp-json/menus/v1/menus/top")
+        fetch(`${rootURL}/menus/v1/menus/top`)
             .then(res => res.json())
             .then(topNav => this.setState({topNav: topNav.items}))
             .catch(console.error)
     }
     render() {
-        const {state, getGallery} = this
+        const {state, getGallery, getProducts, getCategories} = this
         return (
             <StoreProvider value={{
                 ...state,
                 actions: {
-                    getGallery
+                    getGallery,
+                    getProducts,
+                    getCategories,
                 }
             }}>{this.props.children}</StoreProvider>
         )
     }
     getGallery = () => {
         // Fetch gallery images urls
-        fetch("https://localhost/wp-json/wp/v2/media?parent=1621")
-            .then(res => res.json())
+        wpAPI("media?parent=1621")
             .then(gallery => this.setState({gallery}))
+            .catch(console.error)
+    }
+    getProducts = () => {
+        wcAPI("products")
+            .then(products => this.setState({products}))
+            .catch(console.error)
+    }
+    getCategories = () => {
+        wcAPI("products/categories")
+            .then(categories => this.setState({categories}))
             .catch(console.error)
     }
 }

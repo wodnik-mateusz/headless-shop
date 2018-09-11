@@ -7,6 +7,7 @@ import { Route, Switch } from 'react-router-dom';
 import TopNav from '../TopNav/TopNav';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
+import ProductsContainer from '../Products/ProductsContainer';
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
         <TopNav data={topNav}/>
         <Switch>
           <Route exact path={"/"} component={Main} />
+          <Route path={"/shop"} render={() => <ProductsContainer />} />
         </Switch>
         <Footer />
       </div>

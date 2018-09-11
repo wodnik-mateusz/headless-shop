@@ -53,6 +53,13 @@ table {
 	border-spacing: 0;
 }
 
+button {
+	appearance: none;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
 a {
 	text-decoration: none;
 	color: inherit;
