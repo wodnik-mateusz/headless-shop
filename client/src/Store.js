@@ -11,6 +11,8 @@ class Store extends Component {
         gallery: [],
         products: [],
         categories: [],
+        attributes: [],
+        tags: [],
     }
     componentDidMount() {
         // Fetch top navigation
@@ -20,7 +22,7 @@ class Store extends Component {
             .catch(console.error)
     }
     render() {
-        const {state, getGallery, getProducts, getCategories} = this
+        const {state, getGallery, getProducts, getCategories, getAttributes, getTags} = this
         return (
             <StoreProvider value={{
                 ...state,
@@ -28,6 +30,8 @@ class Store extends Component {
                     getGallery,
                     getProducts,
                     getCategories,
+                    getAttributes,
+                    getTags,
                 }
             }}>{this.props.children}</StoreProvider>
         )
@@ -38,14 +42,34 @@ class Store extends Component {
             .then(gallery => this.setState({gallery}))
             .catch(console.error)
     }
-    getProducts = () => {
-        wcAPI("products")
+    getProducts = (query) => {
+        wcAPI(`products${query ? "?" + query : ""}`)
             .then(products => this.setState({products}))
             .catch(console.error)
     }
     getCategories = () => {
         wcAPI("products/categories")
-            .then(categories => this.setState({categories}))
+            .then(categories => this.setState({categories: categories.map(cat => ({...cat, type: "category"}))}))
+            .catch(console.error)
+    }
+    getTags = () => {
+        wcAPI("products/tags")
+            .then(tags => this.setState({tags: tags.map(tag => ({...tag, type: "tag"}))}))
+            .catch(console.error)
+    }
+    getAttributes = () => {
+        wcAPI("products/attributes")
+            .then(attributes => {
+                return this.populateAttributesTerms(attributes.map(attr => ({...attr, type: "attribute"})))
+            })
+            .then(populated => this.setState({attributes: populated}))
+            .catch(console.error)
+    }
+    populateAttributesTerms = (attributes) => {
+        return Promise.all(attributes.map((attr, idx) => {
+            return wcAPI(`products/attributes/${attr.id}/terms`)
+                .then(terms => ({...attr, terms: terms.map(term => ({...term, type: "attribute_term"}))}))
+        }))
             .catch(console.error)
     }
 }

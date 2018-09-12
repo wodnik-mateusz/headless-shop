@@ -17,7 +17,7 @@ class App extends Component {
         <TopNav data={topNav}/>
         <Switch>
           <Route exact path={"/"} component={Main} />
-          <Route path={"/shop"} render={() => <ProductsContainer />} />
+          <Route path={"/shop"} render={(props) => <ProductsContainer {...props} />} />
         </Switch>
         <Footer />
       </div>

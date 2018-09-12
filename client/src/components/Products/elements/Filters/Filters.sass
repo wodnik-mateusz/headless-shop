@@ -1,18 +1,25 @@
-.filters
+.container
     justify-content: space-between
     border: 5px solid black
+    position: sticky
+    top: 80px
+    transition: 0.4s
 .categories
 
 .category
     text-transform: uppercase
 .bottom
-.apply
-    font-size: 3em
 
-\:global
-    #toggleFilters
-        position: fixed
-        font-size: 3em
+#toggleFilters
+    position: absolute
+    color: orange
+    left: 100%
+    font-size: 3em
+.list
+    margin-left: 20px 
+
+.hide
+    width: 0
 
 // \:global
 //     #toggleFiltersLabel
