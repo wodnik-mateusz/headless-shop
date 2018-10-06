@@ -8,7 +8,7 @@ import {MdFilterList} from 'react-icons/md';
  * @param {*} param0 
  */
 const Filters = ({sections, handleFilters}) => (
-    <form onChange={handleFilters}>
+    <form className={styles.filters} onChange={handleFilters}>
         <header className={styles.top}>
             <h2>Filters</h2>
         </header>
@@ -62,9 +62,9 @@ const FiltersList = ({filters=[], attribute}) => (
  */
 const Filter = ({filter, attribute}) => (
     <li className={styles.filter}>
-        {filter.type === "attribute" ? 
-            <h4>{filter.name}</h4> 
-            : 
+        {filter.type === "attribute" ?
+            <h4>{filter.name}</h4>
+            :
             <label>
                 <input id={filter.id} type="checkbox" name={filter.type} data-attribute={attribute} defaultChecked={false}/>
                 {filter.name} ({filter.count})

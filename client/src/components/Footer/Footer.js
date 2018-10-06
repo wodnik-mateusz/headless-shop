@@ -11,7 +11,7 @@ class Footer extends Component {
     toggleMap = () => this.setState({showMap: !this.state.showMap})
 
     render = () =>(
-        <footer className={styles.footer}>
+        <footer id={"footer"} className={styles.footer}>
             <Top />
             <Middle toggleMap={this.toggleMap}/>
             {this.state.showMap && <Map />}
